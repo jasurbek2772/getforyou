@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квест - Неделя 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .stage {
+            display: none; /* Скрывает этапы по умолчанию */
+            margin-top: 20px;
+        }
+        .stage.active {
+            display: block; /* Открывает этап, когда он активен */
+        }
+        .hint {
+            font-style: italic;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Квест: Неделя 2</h1>
+
+        <!-- Этап 8: Кодовый пароль -->
+        <div class="stage active" id="stage8">
+            <h2>День 1: Кодовый пароль</h2>
+            <p>Введите код, который был на 7-м этапе. Подсказка: "Этот код был в предыдущем задании".</p>
+            <input type="text" id="answer8" placeholder="Введите код">
+            <button onclick="checkAnswer(8)">Проверить</button>
+            <button onclick="showHint(8)">Подсказка</button>
+            <p id="message8"></p>
+            <p id="hint8" class="hint" style="display:none;">Подсказка: Задание из 7 дня.</p>
+        </div>
+
+        <!-- Этап 9: Логическая последовательность -->
+        <div class="stage" id="stage9">
+            <h2>День 2: Логическая последовательность</h2>
+            <p>Что будет следующим числом в последовательности: 8, 27, 64, 125, ?</p>
+            <input type="text" id="answer9" placeholder="Введите число">
+            <button onclick="checkAnswer(9)">Проверить</button>
+            <p id="message9"></p>
+        </div>
+
+        <!-- Этап 10: Загадка в стиле ребуса -->
+        <div class="stage" id="stage10">
+            <h2>День 3: Загадка в стиле ребуса</h2>
+            <p>4 фото 1 слово</p>
+            <img src="11.jpg" alt="4 фото 1 слово">
+            <p>Буквы: "Л", "Г", "М", "Ь", "И" "П", "Н", "Я", "Ъ", "Л", "И", "Т</p>
+            <input type="text" id="answer10" placeholder="Введите слово">
+            <button onclick="checkAnswer(10)">Проверить</button>
+            <p id="message10"></p>
+        </div>
+
+        <!-- Этап 11: Музыкальная загадка -->
+        <div class="stage" id="stage11">
+            <h2>День 4: Музыкальная загадка</h2>
+            <p>Отрывок из суры:</p>
+            <audio controls>
+                <source src="1.mp3" type="audio/mpeg">
+                
+            </audio>
+            <p>Как называется эта сура из Корана?</p>
+            <input type="text" id="answer11" placeholder="Введите название суры">
+            <button onclick="checkAnswer(11)">Проверить</button>
+            <p id="message11"></p>
+        </div>
+
+        <!-- Этап 12: Криптограмма -->
+        <div class="stage" id="stage12">
+            <h2>День 5: Вопрос</h2>
+            <p>Сколько особей каждого вида тварей/животных взял Мойсей на ковчег?</p>
+            
+            <input type="text" id="answer12" placeholder="Введите слово">
+            <button onclick="checkAnswer(12)">Проверить</button>
+            <button onclick="showHint(9)">Подсказка</button>
+            <p id="hint9" class="hint" style="display:none;">Подсказка: это не число!!!. Думай логичнее!!!</p>
+
+            <p id="message12"></p>
+        </div>
+
+        <!-- Этап 13: Лабиринт -->
+        <div id="stage13" class="stage">
+            <h2>День 6: Азбука Морзе</h2>
+            <p>Собери слово "<strong>Люблю</strong>" из кода Морзе. Выбирай правильные символы для каждой буквы:</p>
+        
+            <p><strong>Л:</strong> <span style="font-family: monospace;"></span></p>
+            <select id="morse1">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse2">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse3">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse4">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+        
+            <p><strong>Ю:</strong> <span style="font-family: monospace;"></span></p>
+            <select id="morse5">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse6">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse7">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse8">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+        
+            <p><strong>Б:</strong> <span style="font-family: monospace;"></span></p>
+            <select id="morse9">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse10">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse11">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse12">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+        
+            <p><strong>Л:</strong> <span style="font-family: monospace;"></span></p>
+            <select id="morse13">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse14">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse15">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse16">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+        
+            <p><strong>Ю:</strong> <span style="font-family: monospace;"></span></p>
+            <select id="morse17">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+            </select>
+            <select id="morse18">
+                <option value="">Выбери</option>
+                <option value=".">.</option>
+                <option value="-">-</option>
+        </select>
+        <select id="morse19">
+            <option value="">Выбери</option>
+            <option value=".">.</option>
+            <option value="-">-</option>
+        </select>
+        <select id="morse20">
+            <option value="">Выбери</option>
+            <option value=".">.</option>
+            <option value="-">-</option>
+
+        </select>
+<br>
+        <button onclick="checkMorseAnswer()">Проверить</button>
+        <p id="morseMessage"></p>
+    </div>
+
+
+
+<div class="stage" id="stage14">
+            <h2>День 7: Вопрос по Религии</h2>
+            <p>Кем является Закарья Марьяму?</p>
+            <input type="text" id="answer14" placeholder="Введите ответ">
+            <button onclick="checkAnswer(14)">Проверить</button>
+            <p id="message14"></p>
+        </div>
+
+    </div>
+
+    <script>
+        let attemptCount = 0;
+
+        function checkAnswer(day) {
+    let answers = {
+        8: "2481632",
+        9: "216",
+        10: "лимит",
+        11: ["mulk", "мульк", "мулк"],
+        12: ["ной", "нух"],
+        14: ["тога", "дядя", "брат папы"]
+    };
+
+    let userAnswer = document.getElementById(`answer${day}`).value.toLowerCase().replace(/\s+/g, ""); // Приводим к нижнему регистру и убираем пробелы
+
+    if (Array.isArray(answers[day])) {
+        for (let correct of answers[day]) {
+            if (userAnswer.includes(correct)) { 
+                document.getElementById(`message${day}`).textContent = "Правильно!";
+                document.getElementById(`message${day}`).style.color = "green";
+                document.getElementById(`stage${day + 1}`).style.display = "block"; // Открыть следующий этап
+                return;
+            }
+        }
+    } else {
+        if (userAnswer === answers[day]) {
+            document.getElementById(`message${day}`).textContent = "Правильно!";
+            document.getElementById(`message${day}`).style.color = "green";
+            document.getElementById(`stage${day + 1}`).style.display = "block"; // Открыть следующий этап
+            return;
+        }
+    }
+
+    document.getElementById(`message${day}`).textContent = "Неправильно, попробуй ещё раз!";
+    document.getElementById(`message${day}`).style.color = "red";
+}
+
+        function showHint(day) {
+            document.getElementById("hint" + day).style.display = "block";
+        }
+    </script>
+<script>
+    function checkMorseAnswer() {
+        const correctAnswer = [".", "-", ".", ".", ".", ".", "-", "-","-", ".", ".", ".", ".", "-", ".", ".", ".", ".", "-", "-"];
+        let userAnswer = [];
+
+        for (let i = 1; i <= 20; i++) {
+            userAnswer.push(document.getElementById(`morse${i}`).value);
+        }
+
+        if (JSON.stringify(userAnswer) === JSON.stringify(correctAnswer)) {
+            document.getElementById("morseMessage").textContent = "Правильно! Ты собрала слово 'Люблю'!";
+            document.getElementById("morseMessage").style.color = "green";
+            // Разблокируем следующий этап
+            document.getElementById("stage14").style.display = "block";
+        } else {
+            document.getElementById("morseMessage").textContent = "Неправильно, попробуй ещё раз!";
+            document.getElementById("morseMessage").style.color = "red";
+        }
+    }
+</script>
+
+</body>
+</html>
