@@ -111,6 +111,7 @@
             <input type="text" id="answer7" placeholder="Введите число">
             <button onclick="checkAnswer(7)">Проверить</button>
             <p id="message7"></p>
+            <button id="nextPageButton" style="display: none;" onclick="location.href='page2.html'">дальше</button>
         </div>
 
     </div>
@@ -141,6 +142,9 @@ let userAnswer = document.getElementById("answer" + day);
                 let nextStage = document.getElementById("stage" + (day + 1));
                 if (nextStage) {
                     nextStage.classList.add("active");
+                if (day == 7){
+                    document.getElementById("nextPageButton").style.display = "block";
+                }
                 }
             } else {
                 document.getElementById("message" + day).innerText = "Неверно! Попробуй ещё раз.";
