@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квест - Неделя 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .stage {
+            display: none; /* Скрывает этапы по умолчанию */
+            margin-top: 20px;
+        }
+        .stage.active {
+            display: block; /* Открывает этап, когда он активен */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Квест: Первая неделя</h1>
+
+        <!-- Этап 1 -->
+        <div class="stage active" id="stage1">
+            <h2>День 1: Найди скрытое слово</h2>
+            <p>В тексте есть лишние символы. Убери их, чтобы найти ключевое слово:</p>
+            <pre>&sКлlюючо?е$во!с?ле</pre>
+            <input type="text" id="answer1" placeholder="Введите слово">
+            <button onclick="checkAnswer(1)">Проверить</button>
+            <p id="message1"></p>
+        </div>
+
+        <!-- Этап 2 -->
+        <div class="stage" id="stage2">
+            <h2>День 2: Расшифруй код</h2>
+            <p>Сдвиг на 3 вправо: <b>"ПЭЖКЭ"</b></p>
+            <input type="text" id="answer2" placeholder="Введите слово">
+            <button onclick="checkAnswer(2)">Проверить</button>
+            <p id="message2"></p>
+        </div>
+
+        <!-- Этап 3 -->
+        <div class="stage" id="stage3">
+            <h2>День 3: Викторина</h2>
+            <p>Какой мой любимый цвет?</p>
+            <input type="text" id="answer3" placeholder="Введите ответ">
+            <button onclick="checkAnswer(3)">Проверить</button>
+            <p id="message3"></p>
+        </div>
+
+        <!-- Этап 4 -->
+       <!-- Этап 4 -->
+<div class="stage" id="stage4">
+    <h2>День 4: Найди латинское название</h2>
+    <p>Как называется эта часть тела на латыни?</p>
+    <img src="https://as2.ftcdn.net/v2/jpg/01/36/77/61/1000_F_136776135_IxcUz3RkAegnmi64hQ8qxoGnJZrBLDCT.jpg" alt="Часть тела">
+    
+    <input type="text" id="answer4" placeholder="Введите ответ">
+    <button onclick="checkAnswer(4)">Проверить</button>
+    <button onclick="showHint(4)">Подсказка</button>
+    <p id="message4"></p>
+    <p id="hint4" style="display:none; font-style:italic; color:gray;">Подсказка: начинается на "A"...</p>
+</div>
+
+<script>
+    function showHint(day) {
+        document.getElementById("hint" + day).style.display = "block";
+    }
+</script>
+
+        <!-- Этап 5 -->
+        <div class="stage" id="stage5">
+            <h2>День 5: Головоломка</h2>
+            <p>Я всегда с тобой, но ты меня не видишь. Кто я?</p>
+            <input type="text" id="answer5" placeholder="Введите ответ">
+            <button onclick="checkAnswer(5)">Проверить</button>
+            <p id="message5"></p>
+        </div>
+
+        <!-- Этап 6 -->
+        <div class="stage" id="stage6">
+            <h2>День 6: Найди кнопку</h2>
+            <p>Где-то на этой странице есть скрытая кнопка. Найди и нажми её.</p>
+            <button id="hiddenButton" style="display: none;" onclick="checkAnswer(6)">Нажми меня!</button>
+            <p id="message6"></p>
+        </div>
+
+        <!-- Этап 7 -->
+        <div class="stage" id="stage7">
+            <h2>День 7: Числовая последовательность</h2>
+            <p>Какое число идёт следующим: 2, 4, 8, 16, ?</p>
+            <input type="text" id="answer7" placeholder="Введите число">
+            <button onclick="checkAnswer(7)">Проверить</button>
+            <p id="message7"></p>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswer(day) {
+            let answers = {
+                1: "ключевое",
+                2: "тайна",
+                3: "зеленый",  // Замени на правильный цвет
+                4: 'auris',
+                5: "тень",
+                6: "ok",  // Кнопка автоматически проверит
+                7: "32"
+            };
+
+let userAnswer = document.getElementById("answer" + day);
+            if (!userAnswer && day === 6) { 
+                // Этап с кнопкой
+                document.getElementById("message6").innerText = "Правильно!";
+                document.getElementById("stage7").classList.add("active");
+                return;
+            }
+
+            let answer = userAnswer.value.toLowerCase().trim();
+            if (answer === answers[day]) {
+                document.getElementById("message" + day).innerText = "Верно!";
+                let nextStage = document.getElementById("stage" + (day + 1));
+                if (nextStage) {
+                    nextStage.classList.add("active");
+                }
+            } else {
+                document.getElementById("message" + day).innerText = "Неверно! Попробуй ещё раз.";
+            }
+        }
+
+        // Показываем скрытую кнопку случайно через 5-10 секунд
+        setTimeout(() => {
+            document.getElementById("hiddenButton").style.display = "inline-block";
+        }, Math.random() * (10000 - 5000) + 5000);
+    </script>
+
+</body>
+</html>
