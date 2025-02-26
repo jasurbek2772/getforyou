@@ -223,63 +223,61 @@
 
 
 
+<!-- Этап 14: Вопрос по Религии -->
 <div class="stage" id="stage14">
-            <h2>День 7: Вопрос по Религии</h2>
-            <p>Кем является Закарья Марьяму?</p>
-            <input type="text" id="answer14" placeholder="Введите ответ">
-            <button onclick="checkAnswer(14)">Проверить</button>
-            <p id="message14"></p>
-     <button id="nextPageButton" style="display: none;" onclick="location.href='page3.html'">Дальше</button>
-        </div>
+    <h2>День 14: Вопрос по Религии</h2>
+    <p>Кем является Закарья Марьяму?</p>
+    <input type="text" id="answer14" placeholder="Введите ответ">
+    <button onclick="checkAnswer(14)">Проверить</button>
+    <p id="message14"></p>
+    <!-- Кнопка для перехода на следующую страницу (сначала скрыта) -->
+    <button id="nextPageButton" style="display: none;" onclick="location.href='page3.html'">Дальше</button>
+</div>
 
-    </div>
+<script>
+    let attemptCount = 0;
 
-    <script>
-        let attemptCount = 0;
+    function checkAnswer(day) {
+        let answers = {
+            8: "2481632",
+            9: "216",
+            10: "лимит",
+            11: ["mulk", "мульк", "мулк"],
+            12: ["ной", "нух"],
+            14: ["тога", "дядя", "брат папы"]
+        };
 
-        function checkAnswer(day) {
-    let answers = {
-        8: "2481632",
-        9: "216",
-        10: "лимит",
-        11: ["mulk", "мульк", "мулк"],
-        12: ["ной", "нух"],
-        14: ["тога", "дядя", "брат папы"]
-    };
+        let userAnswer = document.getElementById("answer" + day).value.toLowerCase().replace(/\s+/g, ""); // Приводим к нижнему регистру и убираем пробелы
 
-    let userAnswer = document.getElementById(`answer${day}`).value.toLowerCase().replace(/\s+/g, ""); // Приводим к нижнему регистру и убираем пробелы
-
-    if (Array.isArray(answers[day])) {
-        for (let correct of answers[day]) {
-            if (userAnswer.includes(correct)) { 
-                document.getElementById(`message${day}`).textContent = "Правильно!";
-                document.getElementById(`message${day}`).style.color = "green";
-                document.getElementById(`stage${day + 1}`).style.display = "block"; // Открыть следующий этап
+        if (Array.isArray(answers[day])) {
+            for (let correct of answers[day]) {
+                if (userAnswer.includes(correct)) { 
+                    document.getElementById("message" + day).textContent = "Правильно!";
+                    document.getElementById("message" + day).style.color = "green";
+                    document.getElementById("stage" + (day + 1)).style.display = "block"; // Открыть следующий этап
+                    document.getElementById("nextPageButton").style.display = "block"; // Показываем кнопку перехода
+                    return;
+                }
+            }
+        } else {
+            if (userAnswer === answers[day]) {
+                document.getElementById("message" + day).textContent = "Правильно!";
+                document.getElementById("message" + day).style.color = "green";
+                document.getElementById("stage" + (day + 1)).style.display = "block"; // Открыть следующий этап
+                document.getElementById("nextPageButton").style.display = "block"; // Показываем кнопку перехода
                 return;
             }
         }
-    } else {
-        if (userAnswer === answers[day]) {
-            document.getElementById(`message${day}`).textContent = "Правильно!";
-            document.getElementById(`message${day}`).style.color = "green";
-            document.getElementById(`stage${day + 1}`).style.display = "block"; // Открыть следующий этап
-            return;
-        }
-        
+
+        // Если ответ неправильный
+        document.getElementById("message" + day).textContent = "Неправильно, попробуй ещё раз!";
+        document.getElementById("message" + day).style.color = "red";
     }
-            if (day == 7) {
-                document.getElementById("nextPageButton").style.display = "block";
-            }
-            
 
-    document.getElementById(`message${day}`).textContent = "Неправильно, попробуй ещё раз!";
-    document.getElementById(`message${day}`).style.color = "red";
-}
-
-        function showHint(day) {
-            document.getElementById("hint" + day).style.display = "block";
-        }
-    </script>
+    function showHint(day) {
+        document.getElementById("hint" + day).style.display = "block";
+    }
+</script>
 <script>
     function checkMorseAnswer() {
         const correctAnswer = [".", "-", ".", ".", ".", ".", "-", "-","-", ".", ".", ".", ".", "-", ".", ".", ".", ".", "-", "-"];
