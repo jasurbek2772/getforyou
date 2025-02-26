@@ -105,57 +105,59 @@
         </div>
 
         <!-- Этап 7 -->
-        <div class="stage" id="stage7">
-            <h2>День 7: Числовая последовательность</h2>
-            <p>Какое число идёт следующим: 2, 4, 8, 16, ?</p>
-            <input type="text" id="answer7" placeholder="Введите число">
-            <button onclick="checkAnswer(7)">Проверить</button>
-            <p id="message7"></p>
-            <button id="nextPageButton" style="display: none;" onclick="location.href='page2.html'">дальше</button>
-        </div>
+<div class="stage" id="stage7">
+    <h2>День 7: Числовая последовательность</h2>
+    <p>Какое число идёт следующим: 2, 4, 8, 16, ?</p>
+    <input type="text" id="answer7" placeholder="Введите число">
+    <button onclick="checkAnswer(7)">Проверить</button>
+    <p id="message7"></p>
+    <button id="nextPageButton" style="display: none;" onclick="location.href='page2.html'">Дальше</button>
+</div>
 
-    </div>
+<script>
+    function checkAnswer(day) {
+        let answers = {
+            1: "ключевое",
+            2: "тайна",
+            3: "зеленый",  // Замени на правильный цвет
+            4: 'auris',
+            5: "тень",
+            6: "ok",  // Кнопка автоматически проверит
+            7: "32"
+        };
 
-    <script>
-        function checkAnswer(day) {
-            let answers = {
-                1: "ключевое",
-                2: "тайна",
-                3: "зеленый",  // Замени на правильный цвет
-                4: 'auris',
-                5: "тень",
-                6: "ok",  // Кнопка автоматически проверит
-                7: "32"
-            };
+        let userAnswer = document.getElementById("answer" + day);
 
-let userAnswer = document.getElementById("answer" + day);
-            if (!userAnswer && day === 6) { 
-                // Этап с кнопкой
-                document.getElementById("message6").innerText = "Правильно!";
-                document.getElementById("stage7").classList.add("active");
-                return;
-            }
-
-            let answer = userAnswer.value.toLowerCase().trim();
-            if (answer === answers[day]) {
-                document.getElementById("message" + day).innerText = "Верно!";
-                let nextStage = document.getElementById("stage" + (day + 1));
-                if (nextStage) {
-                    nextStage.classList.add("active");
-                if (day == 7){
-                    document.getElementById("nextPageButton").style.display = "block";
-                }
-                }
-            } else {
-                document.getElementById("message" + day).innerText = "Неверно! Попробуй ещё раз.";
-            }
+        // Проверяем если этап 6, то сразу переходим
+        if (!userAnswer && day === 6) { 
+            document.getElementById("message6").innerText = "Правильно!";
+            document.getElementById("stage7").classList.add("active");
+            return;
         }
 
-        // Показываем скрытую кнопку случайно через 5-10 секунд
-        setTimeout(() => {
-            document.getElementById("hiddenButton").style.display = "inline-block";
-        }, Math.random() * (10000 - 5000) + 5000);
-    </script>
+        let answer = userAnswer.value.toLowerCase().trim();
+
+        if (answer === answers[day]) {
+            document.getElementById("message" + day).innerText = "Верно!";
+            let nextStage = document.getElementById("stage" + (day + 1));
+            if (nextStage) {
+                nextStage.classList.add("active");
+            }
+            
+            // Показываем кнопку "Дальше" только после успешного ответа на день 7
+            if (day == 7) {
+                document.getElementById("nextPageButton").style.display = "block";
+            }
+        } else {
+            document.getElementById("message" + day).innerText = "Неверно! Попробуй ещё раз.";
+        }
+    }
+
+    // Показываем скрытую кнопку случайно через 5-10 секунд
+    setTimeout(() => {
+        document.getElementById("hiddenButton").style.display = "inline-block";
+    }, Math.random() * (10000 - 5000) + 5000);
+</script>
 
 </body>
 </html>
