@@ -265,7 +265,12 @@
             document.getElementById(`stage${day + 1}`).style.display = "block"; // Открыть следующий этап
             return;
         }
+        
     }
+            if (day == 7) {
+                document.getElementById("nextPageButton").style.display = "block";
+            }
+            
 
     document.getElementById(`message${day}`).textContent = "Неправильно, попробуй ещё раз!";
     document.getElementById(`message${day}`).style.color = "red";
