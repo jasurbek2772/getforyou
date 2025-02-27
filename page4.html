@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -16,7 +15,6 @@
             overflow: hidden;
         }
 
-        /* Контейнер с текстом */
         .container {
             max-width: 600px;
             margin: auto;
@@ -24,30 +22,8 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 2;
         }
 
-        /* Цитаты по бокам */
-        .quote-box {
-            position: absolute;
-            width: 200px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            font-size: 16px;
-            font-style: italic;
-            text-align: center;
-        }
-        
-        .quote1 { top: 10%; left: 5%; }
-        .quote2 { top: 10%; right: 5%; }
-        .quote3 { top: 40%; left: 5%; }
-        .quote4 { top: 40%; right: 5%; }
-        .quote5 { bottom: 10%; left: 5%; }
-        .quote6 { bottom: 10%; right: 5%; }
-
-        /* Таймер */
         .timer {
             font-size: 24px;
             font-weight: bold;
@@ -57,7 +33,6 @@
             display: none;
         }
 
-        /* Кнопка */
         button {
             background: #ff4b6e;
             border: none;
@@ -73,7 +48,6 @@
             background: #ff2d55;
         }
 
-        /* Фоновое сердце, меняющее цвет */
         .heart {
             position: fixed;
             width: 150px;
@@ -91,6 +65,16 @@
             50% { background: pink; transform: translate(-50%, -50%) scale(1.2); }
             100% { background: purple; transform: translate(-50%, -50%) scale(1); }
         }
+
+        .quotes {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            font-size: 16px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -103,20 +87,22 @@
     <p>Подожди немного, и ты увидишь финал...</p>
     <p class="timer" id="timer">3:00</p>
     <div id="code" style="display: none;"><a href="final.html">ФИНАЛ</a></div>
-
+    
     <button id="finalButton" class="hidden" onclick="location.href='final.html'">Посмотреть финал</button>
 </div>
 
 <!-- Фоновое сердце -->
 <div class="heart"></div>
 
-<!-- Цитаты по бокам -->
-<div class="quote-box quote1">"Любовь – это когда ты находишь частичку себя в другом человеке."</div>
-<div class="quote-box quote2">"Ты – моя самая прекрасная случайность."</div>
-<div class="quote-box quote3">"Настоящая любовь не знает расстояний и времени."</div>
-<div class="quote-box quote4">"Я не знаю, что такое идеальная любовь, но знаю, что ты – моя идеальная любовь."</div>
-<div class="quote-box quote5">"Сердце всегда найдёт дорогу туда, где его ждут."</div>
-<div class="quote-box quote6">"Любить – значит не просто быть рядом, а чувствовать друг друга на любом расстоянии."</div>
+<!-- Цитаты снизу -->
+<div class="quotes">
+    <p>"Любовь – это когда ты находишь частичку себя в другом человеке."</p>
+    <p>"Ты – моя самая прекрасная случайность."</p>
+    <p>"Настоящая любовь не знает расстояний и времени."</p>
+    <p>"Я не знаю, что такое идеальная любовь, но знаю, что ты – моя идеальная любовь."</p>
+    <p>"Сердце всегда найдёт дорогу туда, где его ждут."</p>
+    <p>"Любить – значит не просто быть рядом, а чувствовать друг друга на любом расстоянии."</p>
+</div>
 
 <script>
     function startTimer(duration, display) {
@@ -137,9 +123,9 @@
     }
 
     window.onload = function () {
-        let fiveMinutes = 180;
+        let threeMinutes = 180;
         let display = document.getElementById("timer");
-        startTimer(fiveMinutes, display);
+        startTimer(threeMinutes, display);
     };
 </script>
 
