@@ -51,7 +51,7 @@
             <button onclick="checkAnswer(8)">Проверить</button>
             <button onclick="showHint(8)">Подсказка</button>
             <p id="message8"></p>
-            <p id="hint8" class="hint" style="display:none;">Думай логичнее!!! Это не название какой то Страны!!! <br> пиши слитно, пример:"ятебялюблю"
+            <p id="hint8" class="hint" style="display:none;">Думай логичнее!!! Это не название какой то Страны!!! 
             </p>
         </div>
 
@@ -138,9 +138,7 @@
                 13: ["викторина"],
                 14: ["iloveyoum"]
             };
-    function showHint(day) {
-            document.getElementById("hint" + day).style.display = "block";
-        }
+    
             let userAnswer = document.getElementById("answer" + day).value.toLowerCase().replace(/\s+/g, ""); // Приводим к нижнему регистру и убираем пробелы
     
             // Проверяем, содержит ли ответ одно из ключевых слов
@@ -168,6 +166,9 @@
                 document.getElementById("message" + day).textContent = "Неправильно, попробуй ещё раз!";
                 document.getElementById("message" + day).style.color = "red";
             }
+        }
+        function showHint(day) {
+            document.getElementById("hint" + day).style.display = "block";
         }
     </script>
 
