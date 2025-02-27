@@ -138,7 +138,9 @@
                 13: ["викторина"],
                 14: ["iloveyoum"]
             };
-    
+    function showHint(day) {
+            document.getElementById("hint" + day).style.display = "block";
+        }
             let userAnswer = document.getElementById("answer" + day).value.toLowerCase().replace(/\s+/g, ""); // Приводим к нижнему регистру и убираем пробелы
     
             // Проверяем, содержит ли ответ одно из ключевых слов
