@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квест - Неделя 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .stage {
+            display: none; /* Скрывает этапы по умолчанию */
+            margin-top: 20px;
+        }
+        .stage.active {
+            display: block; /* Открывает этап, когда он активен */
+        }
+        .hint {
+            font-style: italic;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Квест: Неделя 3</h1>
+
+        <!-- Этап 8: Кодовый пароль -->
+        <div class="stage active" id="stage8">
+            <h2>День 1: Загадка</h2>
+            <p>Самолет с Армянскими туристами летел из Казахстана в Россию. Над Грузией он разбился. Где следует похоронить выживших туристов?</p>
+            <input type="text" id="answer8" placeholder="Введите код">
+            <button onclick="checkAnswer(8)">Проверить</button>
+            <button onclick="showHint(8)">Подсказка</button>
+            <p id="message8"></p>
+            <p id="hint8" class="hint" style="display:none;">Думай логичнее!!! Это не название какой то Страны!!! <br> пиши слитно, пример:"ятебялюблю"
+            </p>
+        </div>
+
+        <!-- Этап 9: Логическая последовательность -->
+        <div class="stage" id="stage9">
+            <h2>День 2: Логическый Вопрос</h2>
+            <p>Где есть реки, но нет воды, есть города, но нет зданий, и есть леса, но нет деревьев?</p>
+            <input type="text" id="answer9" placeholder="Введите число">
+            <button onclick="checkAnswer(9)">Проверить</button>
+            <p id="message9"></p>
+        </div>
+
+        <!-- Этап 10: Загадка в стиле ребуса -->
+        <div class="stage" id="stage10">
+            <h2>День 3: Логика</h2>
+            <p>Кто может поднять Слона одной рукаой?</p>
+            <input type="text" id="answer10" placeholder="Введите слово">
+            <button onclick="checkAnswer(10)">Проверить</button>
+            <p id="message10"></p>
+        </div>
+
+        <!-- Этап 11: Музыкальная загадка -->
+        <div class="stage" id="stage11">
+            <h2>День 4: вопрос из прошлого</h2>
+           
+            <p>Открой ВК, Дата 21.01.2025, время от 20:00 до 21:00, там есть сообщение(одно слово, я писал(мое сообщение)), напиши это слово.</p>
+            <input type="text" id="answer11" placeholder="Введите название суры">
+            <button onclick="checkAnswer(11)">Проверить</button>
+            <button onclick="showHint(11)">Подсказка</button>
+            <p id="hint11" class="hint" style="display:none;">Подстказка: Ногти</p>
+
+            <p id="message11"></p>
+        </div>
+
+        <!-- Этап 12: Криптограмма -->
+        <div class="stage" id="stage12">
+            <h2>День 5: Вопрос из другого алфавита</h2>
+            <img src="111.jpg" alt="шифр">
+            <p>тут задан тебе вопрос, ты должна ответит на этот вопрос(одно слово)</p>
+            
+            <input type="text" id="answer12" placeholder="Введите слово">
+            <button onclick="checkAnswer(12)">Проверить</button>
+            <button onclick="showHint(9)">Подсказка</button>
+            <p id="hint9" class="hint" style="display:none;">Подсказка: это на Узбекском!!!</p>
+
+            <p id="message12"></p>
+        </div>
+
+        <!-- Этап 13: Лабиринт -->
+          
+          <div class="stage" id="stage13">
+            <h2>День 6: Память</h2>
+            
+            <p>Как называется день 3 из первой недели?</p>
+            
+            <input type="text" id="answer13" placeholder="Введите слово">
+            <button onclick="checkAnswer(13)">Проверить</button>
+           
+
+            <p id="message13"></p>
+        </div>
+
+
+
+<div class="stage" id="stage14">
+            <h2>День 7: Нужно получить код из следующей страницы</h2>
+            <p><a href="https://jasurbek2772.github.io/code/">ПОЛУЧИТЬ КОД</a></p>
+            <input type="text" id="answer14" placeholder="Введите ответ">
+            <button onclick="checkAnswer(14)">Проверить</button>
+            <p id="message14"></p>
+            <button id="nextPageButton" style="display: none;" onclick="location.href='page4.html'">Дальше</button>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswer(day) {
+            let answers = {
+                8: ["не"],
+                9: ["карта"],
+                10: ["шахматист", "шахмат"],
+                11: ["давай"],
+                12: ["ноёб"],
+                13: ["викторина"],
+                14: ["iloveyoum"]
+            };
+    
+            let userAnswer = document.getElementById("answer" + day).value.toLowerCase().replace(/\s+/g, ""); // Приводим к нижнему регистру и убираем пробелы
+    
+            // Проверяем, содержит ли ответ одно из ключевых слов
+            let isCorrect = false;
+            for (let correct of answers[day]) {
+                if (userAnswer.includes(correct)) {
+                    isCorrect = true;
+                    break;
+                }
+            }
+    
+            if (isCorrect) {
+                document.getElementById("message" + day).textContent = "Правильно!";
+                document.getElementById("message" + day).style.color = "green";
+    
+                let nextStage = document.getElementById("stage" + (day + 1));
+                if (nextStage) {
+                    nextStage.style.display = "block"; // Открываем следующий этап
+                }
+    
+                if (day === 14) { // Если это последний этап 7-го дня
+                    document.getElementById("nextPageButton").style.display = "block"; // Показываем кнопку "Дальше"
+                }
+            } else {
+                document.getElementById("message" + day).textContent = "Неправильно, попробуй ещё раз!";
+                document.getElementById("message" + day).style.color = "red";
+            }
+        }
+    </script>
+
+
+</body>
+</html>

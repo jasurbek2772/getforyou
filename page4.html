@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Финальная неделя</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Контейнер с текстом */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Цитаты по бокам */
+        .quote-box {
+            position: absolute;
+            width: 200px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            font-size: 16px;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .quote1 { top: 10%; left: 5%; }
+        .quote2 { top: 10%; right: 5%; }
+        .quote3 { top: 40%; left: 5%; }
+        .quote4 { top: 40%; right: 5%; }
+        .quote5 { bottom: 10%; left: 5%; }
+        .quote6 { bottom: 10%; right: 5%; }
+
+        /* Таймер */
+        .timer {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Кнопка */
+        button {
+            background: #ff4b6e;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #ff2d55;
+        }
+
+        /* Фоновое сердце, меняющее цвет */
+        .heart {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: red;
+            clip-path: path("M150 75C150 30 100 0 75 0C50 0 0 30 0 75C0 120 75 150 75 150C75 150 150 120 150 75Z");
+            animation: heartColor 4s infinite alternate ease-in-out;
+        }
+
+        @keyframes heartColor {
+            0% { background: red; transform: translate(-50%, -50%) scale(1); }
+            50% { background: pink; transform: translate(-50%, -50%) scale(1.2); }
+            100% { background: purple; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Финальная неделя</h1>
+    <p>Я хотел подготовить для тебя ещё несколько испытаний, но времени оказалось слишком мало...</p>
+    <p>Но, знаешь, это даже символично. Иногда слова и испытания не нужны, когда чувства говорят сами за себя.</p>
+    
+    <p>Подожди немного, и ты увидишь финал...</p>
+    <p class="timer" id="timer">3:00</p>
+    <div id="code" style="display: none;"><a href="final.html">ФИНАЛ</a></div>
+
+    <button id="finalButton" class="hidden" onclick="location.href='final.html'">Посмотреть финал</button>
+</div>
+
+<!-- Фоновое сердце -->
+<div class="heart"></div>
+
+<!-- Цитаты по бокам -->
+<div class="quote-box quote1">"Любовь – это когда ты находишь частичку себя в другом человеке."</div>
+<div class="quote-box quote2">"Ты – моя самая прекрасная случайность."</div>
+<div class="quote-box quote3">"Настоящая любовь не знает расстояний и времени."</div>
+<div class="quote-box quote4">"Я не знаю, что такое идеальная любовь, но знаю, что ты – моя идеальная любовь."</div>
+<div class="quote-box quote5">"Сердце всегда найдёт дорогу туда, где его ждут."</div>
+<div class="quote-box quote6">"Любить – значит не просто быть рядом, а чувствовать друг друга на любом расстоянии."</div>
+
+<script>
+    function startTimer(duration, display) {
+        let timer = duration, minutes, seconds;
+        let interval = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(interval);
+                display.style.display = "none";
+                document.getElementById("code").style.display = "block";
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        let fiveMinutes = 180;
+        let display = document.getElementById("timer");
+        startTimer(fiveMinutes, display);
+    };
+</script>
+
+</body>
+</html>
