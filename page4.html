@@ -12,7 +12,9 @@
             font-family: 'Arial', sans-serif;
             padding: 50px;
             position: relative;
-            overflow: hidden;
+            
+            overflow: auto; /* Добавлено */
+    height: 100vh; /* Убедимся, что тело страницы занимает всю высоту экрана */
         }
 
         .container {
@@ -48,23 +50,7 @@
             background: #ff2d55;
         }
 
-        .heart {
-            position: fixed;
-            width: 150px;
-            height: 150px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: red;
-            clip-path: path("M150 75C150 30 100 0 75 0C50 0 0 30 0 75C0 120 75 150 75 150C75 150 150 120 150 75Z");
-            animation: heartColor 4s infinite alternate ease-in-out;
-        }
-
-        @keyframes heartColor {
-            0% { background: red; transform: translate(-50%, -50%) scale(1); }
-            50% { background: pink; transform: translate(-50%, -50%) scale(1.2); }
-            100% { background: purple; transform: translate(-50%, -50%) scale(1); }
-        }
+       
 
         .quotes {
             max-width: 600px;
@@ -91,8 +77,7 @@
     <button id="finalButton" class="hidden" onclick="location.href='final.html'">Посмотреть финал</button>
 </div>
 
-<!-- Фоновое сердце -->
-<div class="heart"></div>
+
 
 <!-- Цитаты снизу -->
 <div class="quotes">
